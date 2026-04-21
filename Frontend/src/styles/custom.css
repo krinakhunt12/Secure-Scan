@@ -1,0 +1,29 @@
+/* Custom utility mappings and moved inline styles */
+
+.bg-linear-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.bg-linear-to-br {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+
+.h-70 {
+  height: 280px;
+}
+
+.radial-grid {
+  background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,1) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.grid-pattern {
+  background-image: linear-gradient(to right, #3b82f6 1px, transparent 1px), linear-gradient(to bottom, #3b82f6 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Small helper for blurred glowing background */
+.bg-blue-glow {
+  background-color: rgba(59,130,246,0.3);
+  filter: blur(100px);
+}
