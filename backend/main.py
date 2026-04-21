@@ -1,19 +1,14 @@
 from fastapi import FastAPI, HTTPException
 from typing import Dict, Any, List
-import dns.resolver
 import uvicorn
 import os
-import whois
 import socket
 import ssl
-import requests
 import contextlib
 import hashlib
 import json
 import time
 import re
-from bs4 import BeautifulSoup
-from ipwhois import IPWhois
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Domain Info API")
@@ -233,6 +228,7 @@ def get_threats(domain: str = None):
 
 
 def get_dns_records(domain: str) -> Dict[str, Any]:
+    import dns.resolver
     records = {}
     types = ["A", "AAAA", "MX", "NS", "TXT", "CNAME", "SOA", "CAA", "SRV"]
     for rtype in types:
@@ -260,6 +256,7 @@ def get_dns_records(domain: str) -> Dict[str, Any]:
     
     # Check DNSSEC validation status
     try:
+        import dns.resolver
         res = dns.resolver.Resolver()
         res.use_edns(0, dns.flags.DO, 4096)
         answer = res.resolve(domain, 'A')
@@ -276,6 +273,7 @@ def get_dns_records(domain: str) -> Dict[str, Any]:
     }
     for name, dns_ip in public_dns.items():
         try:
+            import dns.resolver
             resolver = dns.resolver.Resolver()
             resolver.nameservers = [dns_ip]
             resolver.lifetime = 3
@@ -291,6 +289,7 @@ def get_dns_records(domain: str) -> Dict[str, Any]:
 
 def get_whois(domain: str) -> Dict[str, Any]:
     try:
+        import whois
         w = whois.whois(domain)
         def norm_date(d):
             try:
@@ -376,6 +375,7 @@ def get_subdomains(domain: str) -> List[Dict[str, Any]]:
     for sub in common_subs:
         subdomain = f"{sub}.{domain}"
         try:
+            import dns.resolver
             # Check for A records (fastest way to see if it exists)
             answers = dns.resolver.resolve(subdomain, "A", lifetime=1)
             ips = [rdata.to_text() for rdata in answers]
@@ -411,6 +411,7 @@ def get_lookalikes(domain: str) -> List[Dict[str, Any]]:
     
     for variant in variations:
         try:
+            import dns.resolver
             # Check if variation resolves
             answers = dns.resolver.resolve(variant, "A", lifetime=0.8)
             ips = [rdata.to_text() for rdata in answers]
@@ -475,6 +476,7 @@ def domain_info(domain: str):
 
     # Try HTTP fetch for server headers and status with performance timing
     http = {"reachable": False, "status_code": None, "headers": {}, "error": None, "performance": {}, "redirect_chain": [], "security_headers_score": 0}
+    import requests
     try:
         url = f"https://{domain}" if not domain.startswith("http") else domain
         # Perform a verified HTTPS request (do not skip certificate validation).
@@ -561,6 +563,7 @@ def domain_info(domain: str):
     geo_info = {}
     for ip in ips:
         try:
+            from ipwhois import IPWhois
             obj = IPWhois(ip)
             res = obj.lookup_rdap(depth=1)
             asn = res.get('asn')
@@ -623,6 +626,7 @@ def domain_info(domain: str):
         if rh.ok:
             homepage = {"status": rh.status_code, "title": None, "generator": None, "meta_tags": {}, "has_sri": False}
             try:
+                from bs4 import BeautifulSoup
                 soup = BeautifulSoup(rh.text, 'html.parser')
                 t = soup.title.string if soup.title else None
                 gen = None
@@ -781,5 +785,7 @@ def domain_info(domain: str):
 
 
 if __name__ == "__main__":
+    # Render sets the PORT environment variable automatically
     port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port)
+    print(f"🚀 Application starting on port {port}...")
+    uvicorn.run("main:app", host="0.0.0.0", port=port, log_level="info")
