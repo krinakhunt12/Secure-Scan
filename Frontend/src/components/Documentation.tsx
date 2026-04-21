@@ -42,7 +42,7 @@ export default function Documentation({ onBack }: Props) {
           <ul className="list-disc ml-5">
             <li>
               <pre className="bg-slate-900 p-3 rounded text-xs overflow-auto">
-{`[
+                {`[
   {
     "id": "INC-2026-0001",
     "title": "Deprecated TLS version detected",
@@ -79,7 +79,7 @@ export default function Documentation({ onBack }: Props) {
 
         <div>
           <h2 className="font-semibold">CLI / cURL Examples</h2>
-          <pre className="bg-slate-900 p-3 rounded text-xs overflow-auto">curl "http://127.0.0.1:8000/api/threats?domain=example.com"</pre>
+          <pre className="bg-slate-900 p-3 rounded text-xs overflow-auto">curl "https://secure-scan-qv9z.onrender.com/api/threats?domain=example.com"</pre>
         </div>
 
         <div>
