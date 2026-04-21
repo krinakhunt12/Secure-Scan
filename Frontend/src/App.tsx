@@ -14,7 +14,6 @@ import LandingFeatures from './components/LandingFeatures';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import Documentation from './components/Documentation';
-import { analyzeUrl } from './services/geminiService';
 import { fetchDomain, fetchThreats, fetchSubdomains, fetchLookalikes } from './services/backendService';
 import { ScanResult, HistoryItem, View, PortStatus } from '../types';
 
@@ -237,7 +236,7 @@ function App() {
                 className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-semibold text-blue-400 backdrop-blur-md"
               >
                 <ShieldAlert size={16} />
-                <span>AI-Powered Security Engine v3.1</span>
+                <span>Security Engine v3.1</span>
               </motion.div>
               
               <motion.h1 

@@ -22,8 +22,8 @@ function LandingFeatures() {
   const features = [
     {
       icon: Cpu,
-      title: "AI-Driven Heuristics",
-      description: "Our proprietary neural network analyzes server response patterns to identify misconfigurations before they become vulnerabilities.",
+      title: "Advanced Heuristics",
+      description: "Our proprietary verification engine analyzes server response patterns to identify misconfigurations before they become vulnerabilities.",
       color: "blue"
     },
     {
@@ -59,8 +59,8 @@ function LandingFeatures() {
     },
     {
       icon: Terminal,
-      title: "AI Analysis Engine",
-      desc: "Gemini-powered heuristics correlate findings against known CVE databases and zero-day patterns."
+      title: "Security Analysis Engine",
+      desc: "Deep-packet heuristics correlate findings against known CVE databases and global threat pattern libraries."
     },
     {
       icon: CheckCircle,
@@ -73,7 +73,7 @@ function LandingFeatures() {
     {
       name: "Alex Rivera",
       role: "CTO at NexusFin",
-      quote: "SecureScan AI replaced our manual weekly audits. The depth of the AI-driven diagnostics is unparalleled in the SaaS space.",
+      quote: "SecureScan AI replaced our manual weekly audits. The depth of the automated diagnostics is unparalleled in the SaaS space.",
       avatar: "AR"
     },
     {
@@ -120,7 +120,7 @@ function LandingFeatures() {
           <span className="text-blue-500 text-xs font-bold uppercase tracking-widest mb-4 block">Engine Architecture</span>
           <h2 className="text-4xl font-bold text-white font-heading">The 4-Stage Security Lifecycle</h2>
           <p className="text-slate-400 mt-4 max-w-2xl mx-auto text-lg">
-            How our AI infrastructure dissects and secures your web assets in under 10 seconds.
+            How our technical infrastructure dissects and secures your web assets in under 10 seconds.
           </p>
         </div>
 
@@ -230,7 +230,7 @@ function LandingFeatures() {
                    <p className="text-white"> TLS 1.3 | AES-256-GCM | X25519</p>
                    <p className="text-yellow-500 mt-2">[WARN] HSTS header missing includeSubDomains</p>
                    <p className="text-red-500">[ALERT] Detected CVE-2024-XXXX (Critical)</p>
-                   <p className="text-slate-500 mt-4"># AI Engine calculating risk score...</p>
+                   <p className="text-slate-500 mt-4"># Internal engine calculating risk score...</p>
                    <p className="text-blue-400 font-bold"># DONE. Generating Report ID: SCAN_8892_AX</p>
                    <div className="absolute bottom-6 left-6 right-6 h-1 bg-white/5 rounded-full overflow-hidden">
                      <motion.div 

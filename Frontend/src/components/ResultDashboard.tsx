@@ -8,7 +8,6 @@ import HeadersCard from './HeadersCard';
 import DomainInfoCard from './DomainInfoCard';
 import PortScanCard from './PortScanCard';
 import ThreatIntelCard from './ThreatIntelCard';
-import AIConsultantChat from './AIConsultantChat';
 import SubdomainCard from './SubdomainCard';
 import BrandProtectionCard from './BrandProtectionCard';
 import { Download, RefreshCw, AlertTriangle, ShieldAlert, ChevronRight, Loader2, Tractor } from 'lucide-react';
@@ -298,10 +297,6 @@ function ResultDashboard({ result, onScanAgain }: ResultDashboardProps) {
               <span>{new Date(result.timestamp).toLocaleDateString()}</span>
               <span className="h-1 w-1 rounded-full bg-slate-700" />
               <span>{new Date(result.timestamp).toLocaleTimeString()}</span>
-              <span className="h-1 w-1 rounded-full bg-slate-700" />
-              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">
-                <Tractor size={12} /> AGRI-CONTEXT ACTIVE
-              </div>
             </div>
           </div>
         </div>
@@ -683,8 +678,7 @@ function ResultDashboard({ result, onScanAgain }: ResultDashboardProps) {
         </div>
       </div>
       
-      {/* AI Chat Integration */}
-      <AIConsultantChat scanResult={result} />
+      {/* Future extensions could go here */}
     </motion.div>
   );
 };
