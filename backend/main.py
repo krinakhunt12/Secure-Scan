@@ -1,6 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from typing import Dict, Any, List
 import dns.resolver
+import uvicorn
+import os
 import whois
 import socket
 import ssl
@@ -21,6 +23,7 @@ app = FastAPI(title="Domain Info API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://secure-scan-nine.vercel.app",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "http://localhost:5174",
@@ -771,3 +774,8 @@ def domain_info(domain: str):
         "technologies": technologies,
         "open_ports": open_ports
     }
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
