@@ -427,6 +427,10 @@ def get_lookalikes(domain: str) -> List[Dict[str, Any]]:
     return found_lookalikes
 
 
+@app.get("/")
+def root():
+    return {"message": "API is running 🚀"}
+    
 @app.get("/api/lookalikes")
 def lookalikes(domain: str):
     """Detect potential brand-spoofing domains."""
